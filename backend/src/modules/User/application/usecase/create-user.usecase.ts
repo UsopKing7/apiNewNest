@@ -9,7 +9,7 @@ import { Injectable } from '@nestjs/common'
 @Injectable()
 export class CreateUserUseCase {
   constructor(private readonly userRepo: IUserInterface) {}
-  async execute(data: UserDTOs.CreateUserDTO): Promise<User> {
+  async execute(data: UserDTOs.CreateUserDTO): Promise<UserDTOs.UserResponseDTO> {
     await this.ensureUsernameDoesNotExist(data.username)
     await this.ensureEmailDoesNotExist(data.email)
 
@@ -20,7 +20,8 @@ export class CreateUserUseCase {
 
     const user = new User(usernameVO, data.email, passwordFromHash)
 
-    return await this.userRepo.create(user)
+    const userCreated = await this.userRepo.create(user)
+    return userCreated.getPublicData
   }
 
   private async ensureUsernameDoesNotExist(username: string) {

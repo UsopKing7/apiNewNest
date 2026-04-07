@@ -1,3 +1,4 @@
+import { UserDTOs } from 'modules/User/application/dtos/UserDTOs'
 import { Password } from '../value-objects/Password'
 import { Username } from '../value-objects/Username'
 
@@ -9,9 +10,9 @@ export class User {
     public readonly id_user?: string
   ) {}
 
-  get getPublicData() {
+  get getPublicData(): UserDTOs.UserResponseDTO {
     return {
-      id_user: this.id_user,
+      id_user: this.id_user!,
       username: this.username.value,
       email: this.email
     }

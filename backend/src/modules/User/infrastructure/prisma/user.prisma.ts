@@ -45,4 +45,14 @@ export class UserPrisma implements IUserInterface {
 
     return !!user
   }
+
+  async findByUserForEmail(email: string): Promise<User | null> {
+    const user = await this.prisma.db.user.findUnique({
+      where: { email }
+    })
+
+    return user
+      ? new User(new Username(user.username), user.email, new Password(user.password), user.id_user)
+      : null
+  }
 }

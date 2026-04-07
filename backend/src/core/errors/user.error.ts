@@ -12,4 +12,11 @@ export namespace UserErrors {
       this.name = 'EmailAlreadyExistsError'
     }
   }
+
+  export class InvalidCredentialsError extends Error {
+    constructor() {
+      super('Invalid credentials')
+      this.name = 'InvalidCredentialsError'
+    }
+  }
 }

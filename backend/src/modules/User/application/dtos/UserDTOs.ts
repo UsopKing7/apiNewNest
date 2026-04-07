@@ -4,4 +4,15 @@ export namespace UserDTOs {
     email: string
     password: string
   }
+
+  export interface LoginUserDTO {
+    email: string
+    password: string
+  }
+
+  export interface UserResponseDTO {
+    id_user: string
+    username: string
+    email: string
+  }
 }

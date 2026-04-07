@@ -5,6 +5,7 @@ import { UserService } from './service/user.service'
 import { UserPrisma } from './prisma/user.prisma'
 import { CreateUserUseCase } from '../application/usecase/create-user.usecase'
 import { IUserInterface } from 'core/interfaces/user.interface'
+import { AuthUserUseCase } from '../application/usecase/auth-user.usecase'
 
 @Module({
   imports: [PrismaModule],
@@ -12,6 +13,7 @@ import { IUserInterface } from 'core/interfaces/user.interface'
   providers: [
     UserService,
     CreateUserUseCase,
+    AuthUserUseCase,
     {
       provide: IUserInterface,
       useClass: UserPrisma
